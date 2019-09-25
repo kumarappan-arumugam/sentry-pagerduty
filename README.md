@@ -17,13 +17,17 @@ Plugin for Sentry which allows sending notification via  [Pagerduty](https://www
 ## FAQ
 
 1. Do incidents that are triggered in PagerDuty create a new Issue in Sentry?
-No, the integration only sends information from Sentry to PagerDuty. This is not a 2-way integration.
+
+	No, the integration only sends information from Sentry to PagerDuty. This is not a 2-way integration.
 
 2. If an incident is resolved in PagerDuty, is the issue resolved in Sentry, or vice versa?
-No, the current integration only sends the trigger information from Sentry to PagerDuty.
+
+	No, the current integration only sends the trigger information from Sentry to PagerDuty.
 
 3. Can I setup multiple Sentry Projects be tied to the same PagerDuty service?
-Yes! When you are creating the new Project in Sentry, simply use the same Integration Key as the PagerDuty service where you wish to have the alerts trigger.
+
+	Yes! When you are creating the new Project in Sentry, simply use the same Integration Key as the PagerDuty service where you wish to have the alerts trigger.
 
 4. Can I setup multiple pagerduty services be tied to the same sentry project?
-Yes! Since this uses the new Pagerduty Events API, you can simply use the different service names to route to different services where you wish to have the alerts trigger.
+
+	Yes! Since this uses the new Pagerduty Events API, you can simply use the different service names to route to different services where you wish to have the alerts trigger.
