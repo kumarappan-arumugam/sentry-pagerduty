@@ -95,7 +95,7 @@ class PagerdutyNotifyServiceAction(EventAction):
             try:
                 result = client.EventV2.create(data=payload)
             except Exception as e:
-                self.logger.error('rule.fail.pagerduty_post', extra={'error': e.message})
+                self.logger.error('rule.fail.pagerduty_post', extra={'error_message': e.message, 'error_class': type(e).__name__})
             else:
                 if not result['status'] is 'success':
                     self.logger.error("rule.fail.pagerduty_post", extra={"error": result.get("errors"), "message": result.get("message")})

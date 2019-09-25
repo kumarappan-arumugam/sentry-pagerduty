@@ -107,7 +107,7 @@ class InstallationForm(forms.Form):
         # this creates a test event to verify the api_key before storing
         try:
             result = pypd.EventV2.create(data={
-                        'api_key': api_key,
+                        'routing_key': api_key,
                         'event_action': 'trigger',
                         'payload': {
                             'summary': 'This is a test error event from sentry!',
@@ -116,9 +116,9 @@ class InstallationForm(forms.Form):
                         }
                     })
         except Exception as e:
-            raise forms.ValidationError(_("API key is not functional, test failed with error - %(error)s"),
+            raise forms.ValidationError(_("API key is not functional, test failed with error - %(error_class)s - %(error_message)s"),
                                         code='test-error',
-                                        params={'error': e.message}
+                                        params={'error_message': e.message, 'error_class': type(e).__name__}
                                     )
         else:
             if not result['status'] is 'success':
