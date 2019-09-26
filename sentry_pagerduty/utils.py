@@ -20,6 +20,15 @@ LEVEL_TO_SEVERITY = {
     'critical': 'critical',
 }
 
+# https://github.com/getsentry/sentry/blob/master/src/sentry/models/group.py#L119
+GROUP_STATUS_VERBOSE = {
+    0: 'UNRESOLVED',
+    1: 'RESOLVED',
+    2: 'IGNORED',
+    3: 'PENDING_DELETION',
+    4: 'DELETION_IN_PROGRESS',
+    5: 'PENDING_MERGE'
+}
 
 def format_actor_option(actor):
     if isinstance(actor, User):
@@ -108,7 +117,7 @@ def build_alert_payload(group, routing_key, severity=None, event=None, tags=None
             footer += u' (+{} other)'.format(len(rules) - 1)
 
     logo_url = absolute_uri(get_asset_url('sentry', 'images/sentry-email-avatar.png'))
-
+    status = group.get_status()
     return {
         'payload': {
             'summary': build_attachment_title(group, event),
@@ -129,7 +138,7 @@ def build_alert_payload(group, routing_key, severity=None, event=None, tags=None
                 'Logger': group.logger,
                 'Trigerring Rules': footer,
                 'Tags': fields,
-                'Status': group.get_status(),
+                'Status': GROUP_STATUS_VERBOSE.get(status, status)
                 'Number of times seen': group.times_seen,
                 'First seen': group.first_seen.strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
                 'Number of users seen': group.count_users_seen(),
@@ -140,7 +149,7 @@ def build_alert_payload(group, routing_key, severity=None, event=None, tags=None
             'href': options.get("system.url-prefix"),
             'alt': group.title,
         }],
-        'dedup_key': 'sentry-%d' % group.id,
+        'dedup_key': 'sentry-%s-%d' % (group.project.slug, group.id),
         'event_action': 'trigger',
         'client': 'Sentry',
         'client_url': group.get_absolute_url(params={'referrer': 'pagerduty'}),
