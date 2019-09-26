@@ -97,7 +97,7 @@ class PagerdutyNotifyServiceAction(EventAction):
             except Exception as e:
                 self.logger.error('rule.fail.pagerduty_post', extra={'error_message': e.message, 'error_class': type(e).__name__})
             else:
-                if not result['status'] is 'success':
+                if not result['status'] == 'success':
                     self.logger.error("rule.fail.pagerduty_post", extra={"error": result.get("errors"), "message": result.get("message")})
 
         key = u'pagerduty:{}'.format(integration_id)

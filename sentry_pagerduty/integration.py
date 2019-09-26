@@ -121,7 +121,7 @@ class InstallationForm(forms.Form):
                                         params={'error_message': e.message, 'error_class': type(e).__name__}
                                     )
         else:
-            if not result['status'] is 'success':
+            if not result['status'] == 'success':
                 raise forms.ValidationError(_("API key is not functional, test failed"), code='test-error')
 
         return self.cleaned_data
