@@ -7,6 +7,8 @@ from sentry import options
 from sentry.models import (
     GroupAssignee, User, Team
 )
+from sentry.utils.http import absolute_uri
+from sentry.utils.assets import get_asset_url
 
 logger = logging.getLogger('sentry.integrations.pagerduty')
 
