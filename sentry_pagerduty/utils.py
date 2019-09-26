@@ -131,7 +131,7 @@ def build_alert_payload(group, routing_key, severity=None, event=None, tags=None
                 'Tags': fields,
                 'Status': group.get_status(),
                 'Number of times seen': group.times_seen,
-                'First seen': group.first_seen,
+                'First seen': group.first_seen.strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
                 'Number of users seen': group.count_users_seen(),
             }
         },
