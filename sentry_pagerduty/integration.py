@@ -46,7 +46,7 @@ FEATURES = [
         """
         Configure rule based Pagerduty alerts to automatically be posted to a
         specific service/user. Want any error that's happening more than 100 times a
-        minute to be posted with P1 priority? Setup a rule for it!
+        minute to be posted with critical severity? Setup a rule for it!
         """,
         IntegrationFeatures.ALERT_RULE,
     ),
