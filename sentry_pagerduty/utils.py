@@ -138,7 +138,7 @@ def build_alert_payload(group, routing_key, severity=None, event=None, tags=None
                 'Logger': group.logger,
                 'Trigerring Rules': footer,
                 'Tags': fields,
-                'Status': GROUP_STATUS_VERBOSE.get(status, status)
+                'Status': GROUP_STATUS_VERBOSE.get(status, status),
                 'Number of times seen': group.times_seen,
                 'First seen': group.first_seen.strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
                 'Number of users seen': group.count_users_seen(),
