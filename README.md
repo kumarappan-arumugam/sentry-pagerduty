@@ -31,3 +31,13 @@ Plugin for Sentry which allows sending notification via  [Pagerduty](https://www
 4. Can I setup multiple pagerduty services be tied to the same sentry project?
 
 	Yes! Since this uses the new Pagerduty Events API, you can simply use the different service names to route to different services where you wish to have the alerts trigger.
+
+## Setup
+
+![Step 1](images/Step-1.png?raw=true "Step 1")
+![Step 2](images/Step-2.png?raw=true "Step 2")
+![Step 3](images/Step-3.png?raw=true "Step 3")
+![Step 4](images/Step-4.png?raw=true "Step 4")
+![Step 5](images/Step-5.png?raw=true "Step 5")
+![Step 6](images/Step-6.png?raw=true "Step 6")
+![Step 7](images/Step-7.png?raw=true "Step 7")
